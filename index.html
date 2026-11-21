@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌙 Petualangan Muslim Cilik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- CONFETTI CONTAINER -->
+<div id="confettiContainer" class="confetti-container"></div>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast" class="toast"></div>
+
+<!-- TOP BAR -->
+<header class="topbar" id="topbar">
+  <div class="brand">🌙 <span>Muslim Cilik</span></div>
+  <div class="topbar-right">
+    <div class="stat-pill">⭐ <b id="stars">0</b></div>
+    <div class="stat-pill">🪙 <b id="coins">0</b></div>
+    <button class="icon-btn" id="soundToggleBtn" title="Suara">🔊</button>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════
+     SCREEN 1: HOME
+═══════════════════════════════════════════════════ -->
+<section id="screen-home" class="screen active">
+  <div class="home-bg">
+    <div class="star-deco s1">✦</div>
+    <div class="star-deco s2">✦</div>
+    <div class="star-deco s3">✦</div>
+    <div class="moon-deco">🌙</div>
+  </div>
+  <div class="home-card">
+    <div class="home-art">
+      <span class="mosque-big">🕌</span>
+      <div class="sparkles"><span>✨</span><span>⭐</span><span>✨</span></div>
+    </div>
+    <p class="eyebrow">🌟 ISLAMIC LEARNING ADVENTURE 🌟</p>
+    <h1>Petualangan<br><span class="title-accent">Muslim Cilik</span></h1>
+    <p class="subtitle">Belajar Islam sambil bermain, menyelesaikan misi,<br>dan mengumpulkan bintang dan koin!</p>
+
+    <div class="name-input-wrap">
+      <label for="playerName">✏️ Siapa namamu?</label>
+      <input id="playerName" maxlength="18" placeholder="Tulis namamu di sini..." value="">
+    </div>
+
+    <div class="home-btns">
+      <button class="btn-primary btn-big" id="startBtn">
+        <span class="btn-icon">🚀</span> Mulai Petualangan!
+      </button>
+      <button class="btn-secondary" id="charSelectBtn">
+        <span class="btn-icon">🧒</span> Pilih Karakter
+      </button>
+      <button class="btn-secondary" id="rewardsHomeBtn">
+        <span class="btn-icon">🏆</span> Hadiah Saya
+      </button>
+      <button class="btn-secondary" id="howBtn">
+        <span class="btn-icon">📖</span> Cara Bermain
+      </button>
+    </div>
+    <p class="home-foot">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SCREEN 2: CHARACTER SELECT
+═══════════════════════════════════════════════════ -->
+<section id="screen-char" class="screen">
+  <div class="page-header">
+    <button class="btn-back" id="charBackBtn">← Kembali</button>
+    <h2>🧒 Pilih Karaktermu</h2>
+    <div></div>
+  </div>
+  <div class="char-grid">
+    <div class="char-card" data-char="boy">
+      <div class="char-avatar big">🧒🏻</div>
+      <h3>Muslim</h3>
+      <p>Anak laki-laki Muslim yang ceria, suka belajar Al-Qur'an dan sains.</p>
+      <button class="btn-select-char">Pilih Muslim</button>
+    </div>
+    <div class="char-card" data-char="girl">
+      <div class="char-avatar big">👧🏻</div>
+      <h3>Muslimah</h3>
+      <p>Anak perempuan Muslimah yang pintar, suka menghafal doa dan kisah nabi.</p>
+      <button class="btn-select-char">Pilih Muslimah</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SCREEN 3: ADVENTURE MAP
+═══════════════════════════════════════════════════ -->
+<section id="screen-map" class="screen">
+  <div class="page-header">
+    <button class="btn-back" id="mapBackBtn">← Menu</button>
+    <div class="map-title-wrap">
+      <h2>🗺️ Peta Petualangan</h2>
+      <p id="welcomeMsg" class="welcome-msg"></p>
+    </div>
+    <div class="stat-pill-sm">🏅 <span id="worldsDone">0</span>/6</div>
+  </div>
+  <div class="world-grid" id="worldGrid"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SCREEN 4: GAME PLAY
+═══════════════════════════════════════════════════ -->
+<section id="screen-game" class="screen">
+  <div class="game-header">
+    <button class="btn-back" id="gameBackBtn">← Peta</button>
+    <div class="progress-block">
+      <div class="progress-labels">
+        <span id="questionLabel">Soal 1/10</span>
+        <span id="worldTitle" class="world-title-small"></span>
+        <span id="progressPct">10%</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+    <div class="game-score-pill">⭐ <b id="gameScore">0</b></div>
+  </div>
+
+  <div class="game-area" id="gameArea">
+    <!-- Dynamically rendered by JS per question type -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SCREEN 5: WORLD COMPLETE / RESULT
+═══════════════════════════════════════════════════ -->
+<section id="screen-result" class="screen">
+  <div class="result-card">
+    <div class="result-trophy" id="resultTrophy">🏆</div>
+    <p class="eyebrow" id="resultEyebrow">MISI SELESAI!</p>
+    <h2 id="resultTitle">MasyaAllah, Hebat!</h2>
+    <p id="resultMsg" class="result-msg"></p>
+    <div class="result-stars" id="resultStars"></div>
+    <div class="result-medals" id="resultMedals"></div>
+    <div class="result-gained">
+      <div class="gained-item"><span>⭐</span><b id="gainedStars">0</b><small>Bintang</small></div>
+      <div class="gained-item"><span>🪙</span><b id="gainedCoins">0</b><small>Koin</small></div>
+    </div>
+    <div class="result-btns">
+      <button class="btn-primary" id="againBtn">🔄 Main Lagi</button>
+      <button class="btn-secondary" id="resultMapBtn">🗺️ Kembali ke Peta</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SCREEN 6: REWARDS / HADIAH
+═══════════════════════════════════════════════════ -->
+<section id="screen-rewards" class="screen">
+  <div class="page-header">
+    <button class="btn-back" id="rewardsBackBtn">← Kembali</button>
+    <h2>🏆 Hadiah Saya</h2>
+    <div></div>
+  </div>
+  <div class="rewards-grid">
+    <div class="reward-card">
+      <div class="reward-icon">⭐</div>
+      <div class="reward-val" id="rwStars">0</div>
+      <div class="reward-label">Total Bintang</div>
+    </div>
+    <div class="reward-card">
+      <div class="reward-icon">🪙</div>
+      <div class="reward-val" id="rwCoins">0</div>
+      <div class="reward-label">Total Koin</div>
+    </div>
+    <div class="reward-card">
+      <div class="reward-icon">🌍</div>
+      <div class="reward-val" id="rwWorlds">0</div>
+      <div class="reward-label">Dunia Selesai</div>
+    </div>
+    <div class="reward-card">
+      <div class="reward-icon">🎯</div>
+      <div class="reward-val" id="rwAccuracy">0%</div>
+      <div class="reward-label">Akurasi</div>
+    </div>
+  </div>
+  <div class="medals-section">
+    <h3>🏅 Koleksi Medali</h3>
+    <div id="medalGrid" class="medal-grid"></div>
+  </div>
+  <div id="certSection" class="cert-section" style="display:none">
+    <div class="cert-box">
+      <div class="cert-title">🎓 Sertifikat Muslim Cilik</div>
+      <p id="certText"></p>
+      <div class="cert-seal">🌙⭐🌙</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SCREEN 7: HOW TO PLAY
+═══════════════════════════════════════════════════ -->
+<section id="screen-help" class="screen">
+  <div class="page-header">
+    <button class="btn-back" id="helpBackBtn">← Kembali</button>
+    <h2>📖 Cara Bermain</h2>
+    <div></div>
+  </div>
+  <div class="help-card">
+    <div class="help-step"><span class="step-num">1</span><div><b>Pilih Karaktermu</b><br>Pilih karakter anak Muslim atau Muslimah lalu masukkan namamu.</div></div>
+    <div class="help-step"><span class="step-num">2</span><div><b>Pilih Dunia Petualangan</b><br>Ada 6 dunia yang bisa dijelajahi, dari Taman Rukun Islam hingga Masjid Pengetahuan.</div></div>
+    <div class="help-step"><span class="step-num">3</span><div><b>Jawab Pertanyaan</b><br>Setiap dunia punya 10 soal. Baca soal dengan teliti lalu pilih jawaban yang benar.</div></div>
+    <div class="help-step"><span class="step-num">4</span><div><b>Kumpulkan Bintang & Koin</b><br>Setiap jawaban benar = 10 koin. Selesaikan misi untuk mendapatkan bintang!</div></div>
+    <div class="help-step"><span class="step-num">5</span><div><b>Raih Medali & Sertifikat</b><br>Selesaikan semua 6 dunia untuk mendapat sertifikat Muslim Cilik!</div></div>
+    <div class="help-tip">💡 <b>Tips:</b> Baca penjelasan setelah setiap jawaban agar kamu semakin pintar!</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2026 Petualangan Muslim Cilik · Media Belajar Islam yang Menyenangkan 🌙</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
